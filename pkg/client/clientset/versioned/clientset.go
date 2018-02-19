@@ -17,7 +17,7 @@ package versioned
 
 import (
 	glog "github.com/golang/glog"
-	examplev1 "github.com/openshift-evangelists/crd-code-generation/pkg/client/clientset/versioned/typed/example/v1"
+	causv1 "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned/typed/caus/v1"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
@@ -25,27 +25,27 @@ import (
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
-	ExampleV1() examplev1.ExampleV1Interface
+	CausV1() causv1.CausV1Interface
 	// Deprecated: please explicitly pick a version if possible.
-	Example() examplev1.ExampleV1Interface
+	Caus() causv1.CausV1Interface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
 // version included in a Clientset.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	exampleV1 *examplev1.ExampleV1Client
+	causV1 *causv1.CausV1Client
 }
 
-// ExampleV1 retrieves the ExampleV1Client
-func (c *Clientset) ExampleV1() examplev1.ExampleV1Interface {
-	return c.exampleV1
+// CausV1 retrieves the CausV1Client
+func (c *Clientset) CausV1() causv1.CausV1Interface {
+	return c.causV1
 }
 
-// Deprecated: Example retrieves the default version of ExampleClient.
+// Deprecated: Caus retrieves the default version of CausClient.
 // Please explicitly pick a version.
-func (c *Clientset) Example() examplev1.ExampleV1Interface {
-	return c.exampleV1
+func (c *Clientset) Caus() causv1.CausV1Interface {
+	return c.causV1
 }
 
 // Discovery retrieves the DiscoveryClient
@@ -64,7 +64,7 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 	}
 	var cs Clientset
 	var err error
-	cs.exampleV1, err = examplev1.NewForConfig(&configShallowCopy)
+	cs.causV1, err = causv1.NewForConfig(&configShallowCopy)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 // panics if there is an error in the config.
 func NewForConfigOrDie(c *rest.Config) *Clientset {
 	var cs Clientset
-	cs.exampleV1 = examplev1.NewForConfigOrDie(c)
+	cs.causV1 = causv1.NewForConfigOrDie(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClientForConfigOrDie(c)
 	return &cs
@@ -90,7 +90,7 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 // New creates a new Clientset for the given RESTClient.
 func New(c rest.Interface) *Clientset {
 	var cs Clientset
-	cs.exampleV1 = examplev1.New(c)
+	cs.causV1 = causv1.New(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClient(c)
 	return &cs

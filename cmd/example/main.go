@@ -9,7 +9,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/tools/clientcmd"
 
-	examplecomclientset "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned"
+	elasticityclientset "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned"
 )
 
 var (
@@ -25,17 +25,18 @@ func main() {
 		glog.Fatalf("Error building kubeconfig: %v", err)
 	}
 
-	exampleClient, err := examplecomclientset.NewForConfig(cfg)
+	elasticityClient, err := elasticityclientset.NewForConfig(cfg)
 	if err != nil {
 		glog.Fatalf("Error building example clientset: %v", err)
 	}
 
-	list, err := exampleClient.ExampleV1().Databases("default").List(metav1.ListOptions{})
+	list, err := elasticityClient.CausV1().Elasticities("default").List(metav1.ListOptions{});
+	//Databases("default").List(metav1.ListOptions{})
 	if err != nil {
 		glog.Fatalf("Error listing all databases: %v", err)
 	}
 
-	for _, db := range list.Items {
-		fmt.Printf("database %s with user %q\n", db.Name, db.Spec.User)
+	for _, el := range list.Items {
+		fmt.Printf("Elasticity rules for deployment %s with threshold %d for the workload %s\n", el.Spec.Deployment.Name, el.Spec.Buffer.Threshold, el.Spec.Workload.Queue)
 	}
 }

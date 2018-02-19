@@ -19,9 +19,9 @@ limitations under the License.
 package externalversions
 
 import (
-	versioned "github.com/openshift-evangelists/crd-code-generation/pkg/client/clientset/versioned"
-	example "github.com/openshift-evangelists/crd-code-generation/pkg/client/informers/externalversions/example"
-	internalinterfaces "github.com/openshift-evangelists/crd-code-generation/pkg/client/informers/externalversions/internalinterfaces"
+	versioned "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned"
+	caus "github.com/klinakuf/crd-code-generation/pkg/client/informers/externalversions/caus"
+	internalinterfaces "github.com/klinakuf/crd-code-generation/pkg/client/informers/externalversions/internalinterfaces"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
@@ -110,9 +110,9 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
-	Example() example.Interface
+	Caus() caus.Interface
 }
 
-func (f *sharedInformerFactory) Example() example.Interface {
-	return example.New(f)
+func (f *sharedInformerFactory) Caus() caus.Interface {
+	return caus.New(f)
 }

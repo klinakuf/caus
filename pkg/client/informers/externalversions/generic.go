@@ -20,7 +20,7 @@ package externalversions
 
 import (
 	"fmt"
-	v1 "github.com/openshift-evangelists/crd-code-generation/pkg/apis/example.com/v1"
+	v1 "github.com/klinakuf/crd-code-generation/pkg/apis/caus.rss.uni-stuttgart.de/v1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )
@@ -51,9 +51,9 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=Example, Version=V1
-	case v1.SchemeGroupVersion.WithResource("databases"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Example().V1().Databases().Informer()}, nil
+	// Group=Caus, Version=V1
+	case v1.SchemeGroupVersion.WithResource("elasticities"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Caus().V1().Elasticities().Informer()}, nil
 
 	}
 

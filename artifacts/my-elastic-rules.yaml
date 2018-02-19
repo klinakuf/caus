@@ -1,0 +1,15 @@
+apiVersion: caus.rss.uni-stuttgart.de/v1
+kind: Elasticity
+metadata:
+  name: my-elastic-rules
+spec:
+  deployment:
+    name: "my-microservice"
+    capacity: 8
+    minReplicas: 1
+    maxReplicas: 10
+  buffer:
+    initial: 1
+    threshold: 80
+  workload:
+    queue: "workload-queue"

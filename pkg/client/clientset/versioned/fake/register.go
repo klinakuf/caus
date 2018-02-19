@@ -16,7 +16,7 @@ limitations under the License.
 package fake
 
 import (
-	examplev1 "github.com/openshift-evangelists/crd-code-generation/pkg/apis/example.com/v1"
+	causv1 "github.com/klinakuf/crd-code-generation/pkg/apis/caus.rss.uni-stuttgart.de/v1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -47,6 +47,6 @@ func init() {
 // After this, RawExtensions in Kubernetes types will serialize kube-aggregator types
 // correctly.
 func AddToScheme(scheme *runtime.Scheme) {
-	examplev1.AddToScheme(scheme)
+	causv1.AddToScheme(scheme)
 
 }

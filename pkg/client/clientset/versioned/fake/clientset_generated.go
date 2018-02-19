@@ -16,9 +16,9 @@ limitations under the License.
 package fake
 
 import (
-	clientset "github.com/openshift-evangelists/crd-code-generation/pkg/client/clientset/versioned"
-	examplev1 "github.com/openshift-evangelists/crd-code-generation/pkg/client/clientset/versioned/typed/example/v1"
-	fakeexamplev1 "github.com/openshift-evangelists/crd-code-generation/pkg/client/clientset/versioned/typed/example/v1/fake"
+	clientset "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned"
+	causv1 "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned/typed/caus/v1"
+	fakecausv1 "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned/typed/caus/v1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
@@ -59,12 +59,12 @@ func (c *Clientset) Discovery() discovery.DiscoveryInterface {
 
 var _ clientset.Interface = &Clientset{}
 
-// ExampleV1 retrieves the ExampleV1Client
-func (c *Clientset) ExampleV1() examplev1.ExampleV1Interface {
-	return &fakeexamplev1.FakeExampleV1{Fake: &c.Fake}
+// CausV1 retrieves the CausV1Client
+func (c *Clientset) CausV1() causv1.CausV1Interface {
+	return &fakecausv1.FakeCausV1{Fake: &c.Fake}
 }
 
-// Example retrieves the ExampleV1Client
-func (c *Clientset) Example() examplev1.ExampleV1Interface {
-	return &fakeexamplev1.FakeExampleV1{Fake: &c.Fake}
+// Caus retrieves the CausV1Client
+func (c *Clientset) Caus() causv1.CausV1Interface {
+	return &fakecausv1.FakeCausV1{Fake: &c.Fake}
 }
