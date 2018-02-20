@@ -2,6 +2,7 @@ apiVersion: caus.rss.uni-stuttgart.de/v1
 kind: Elasticity
 metadata:
   name: my-elastic-rules
+  namespace: menti
 spec:
   deployment:
     name: "my-microservice"

@@ -19,15 +19,16 @@ limitations under the License.
 package externalversions
 
 import (
+	reflect "reflect"
+	sync "sync"
+	time "time"
+
 	versioned "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned"
 	caus "github.com/klinakuf/crd-code-generation/pkg/client/informers/externalversions/caus"
 	internalinterfaces "github.com/klinakuf/crd-code-generation/pkg/client/informers/externalversions/internalinterfaces"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
-	reflect "reflect"
-	sync "sync"
-	time "time"
 )
 
 type sharedInformerFactory struct {
