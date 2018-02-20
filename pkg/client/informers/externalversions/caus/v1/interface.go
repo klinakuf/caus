@@ -1,5 +1,5 @@
 /*
-Copyright 2018 The Openshift Evangelists
+Copyright 2018 klinaku@informatik.uni-stuttgart
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ limitations under the License.
 package v1
 
 import (
-	internalinterfaces "github.com/klinakuf/crd-code-generation/pkg/client/informers/externalversions/internalinterfaces"
+	internalinterfaces "github.com/klinakuf/caus/pkg/client/informers/externalversions/internalinterfaces"
 )
 
 // Interface provides access to all the informers in this group version.

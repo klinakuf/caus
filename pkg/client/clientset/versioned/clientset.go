@@ -1,5 +1,5 @@
 /*
-Copyright 2018 The Openshift Evangelists
+Copyright 2018 klinaku@informatik.uni-stuttgart
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ package versioned
 
 import (
 	glog "github.com/golang/glog"
-	causv1 "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned/typed/caus/v1"
+	causv1 "github.com/klinakuf/caus/pkg/client/clientset/versioned/typed/caus/v1"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"

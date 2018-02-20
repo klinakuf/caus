@@ -1,5 +1,5 @@
 /*
-Copyright 2018 The Openshift Evangelists
+Copyright 2018 klinaku@informatik.uni-stuttgart
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@ limitations under the License.
 package v1
 
 import (
-	v1 "github.com/klinakuf/crd-code-generation/pkg/apis/caus.rss.uni-stuttgart.de/v1"
-	"github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned/scheme"
+	v1 "github.com/klinakuf/caus/pkg/apis/caus.rss.uni-stuttgart.de/v1"
+	"github.com/klinakuf/caus/pkg/client/clientset/versioned/scheme"
 	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	rest "k8s.io/client-go/rest"
 )

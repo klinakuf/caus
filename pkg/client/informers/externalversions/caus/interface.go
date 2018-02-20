@@ -1,5 +1,5 @@
 /*
-Copyright 2018 The Openshift Evangelists
+Copyright 2018 klinaku@informatik.uni-stuttgart
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ limitations under the License.
 package caus
 
 import (
-	v1 "github.com/klinakuf/crd-code-generation/pkg/client/informers/externalversions/caus/v1"
-	internalinterfaces "github.com/klinakuf/crd-code-generation/pkg/client/informers/externalversions/internalinterfaces"
+	v1 "github.com/klinakuf/caus/pkg/client/informers/externalversions/caus/v1"
+	internalinterfaces "github.com/klinakuf/caus/pkg/client/informers/externalversions/internalinterfaces"
 )
 
 // Interface provides access to each of this group's versions.

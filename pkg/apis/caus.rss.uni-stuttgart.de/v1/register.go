@@ -5,7 +5,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	caus "github.com/klinakuf/crd-code-generation/pkg/apis/caus.rss.uni-stuttgart.de"
+	caus "github.com/klinakuf/caus/pkg/apis/caus.rss.uni-stuttgart.de"
 )
 
 // SchemeGroupVersion is group version used to register these objects

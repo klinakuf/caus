@@ -9,7 +9,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/tools/clientcmd"
 
-	elasticityclientset "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned"
+	elasticityclientset "github.com/klinakuf/caus/pkg/client/clientset/versioned"
 )
 
 var (
@@ -30,7 +30,7 @@ func main() {
 		glog.Fatalf("Error building example clientset: %v", err)
 	}
 
-	list, err := elasticityClient.CausV1().Elasticities("default").List(metav1.ListOptions{});
+	list, err := elasticityClient.CausV1().Elasticities("default").List(metav1.ListOptions{})
 	//Databases("default").List(metav1.ListOptions{})
 	if err != nil {
 		glog.Fatalf("Error listing all databases: %v", err)

@@ -1,5 +1,5 @@
 /*
-Copyright 2018 The Openshift Evangelists
+Copyright 2018 klinaku@informatik.uni-stuttgart
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@ limitations under the License.
 package fake
 
 import (
-	clientset "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned"
-	causv1 "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned/typed/caus/v1"
-	fakecausv1 "github.com/klinakuf/crd-code-generation/pkg/client/clientset/versioned/typed/caus/v1/fake"
+	clientset "github.com/klinakuf/caus/pkg/client/clientset/versioned"
+	causv1 "github.com/klinakuf/caus/pkg/client/clientset/versioned/typed/caus/v1"
+	fakecausv1 "github.com/klinakuf/caus/pkg/client/clientset/versioned/typed/caus/v1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
