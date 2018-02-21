@@ -1,6 +1,15 @@
-# caus-crd
+# CAUS - A Custom Autoscaler for Containerized Microservices
 
-CAUS (Custom Autoscaler) migrated to work with Kubernetes CRDs
+A **prototype** elasticity controller that complements predictive approaches. It is implemented as an Kubernetes Controller and offers the Elasticity CRD extension
+
+The controller processes definitions of kind Elasticity which cover three aspects of the controller. 
+The controller can be depicted as follows: 
+
+reference signal ---> | Elasticity Controller | ---> input ---> | Deployment.Scale | ---> output
+
+# migration in progress
+
+CAUS (Custom Autoscaler) is currently being migrated to work with Kubernetes CRDs
 
 ## Getting Started
 
