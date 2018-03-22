@@ -2,10 +2,10 @@ apiVersion: caus.rss.uni-stuttgart.de/v1
 kind: Elasticity
 metadata:
   name: my-elastic-rules
-  namespace: menti
+  namespace: default
 spec:
   deployment:
-    name: "my-microservice"
+    name: my-ms-consumer
     capacity: 8
     minReplicas: 1
     maxReplicas: 10
@@ -13,4 +13,4 @@ spec:
     initial: 1
     threshold: 80
   workload:
-    queue: "workload-queue"
+    queue: workload-queue

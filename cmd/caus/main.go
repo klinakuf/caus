@@ -12,17 +12,20 @@ import (
 )
 
 var (
-	kuberconfig   = flag.String("kubeconfig", "", "Path to a kubeconfig. Only required if out-of-cluster.")
-	master        = flag.String("master", "", "The address of the Kubernetes API server. Overrides any value in kubeconfig. Only required if out-of-cluster.")
+	kuberconfig = flag.String("kubeconfig", "", "Path to a kubeconfig. Only required if out-of-cluster.")
+	master      = flag.String("master", "", "The address of the Kubernetes API server. Overrides any value in kubeconfig. Only required if out-of-cluster.")
+	//TimeFrequency is the time frequency of processing elasticity definitions
 	TimeFrequency = flag.String("timefreq", "10", "Frequency in seconds for processiong elasticity definitions e.g. if 10 every 10 sec")
-	ScaleDown     = flag.String("scaledown", "3", "Duration in muinutes for the coming scale down decision")
+	//ScaleDown is the duration between the last decision and the next scaling in decision
+	ScaleDown = flag.String("scaledown", "3", "Duration in muinutes for the coming scale down decision")
 )
 
-//TODO:: Provide the real implementaion that fetches data from Prometheus instance
+//MyMonitor represents the data of the monitoring object
 type MyMonitor struct {
 	name string
 }
 
+//GetRate fetches the rate of the processing queue
 func (m *MyMonitor) GetRate() (float64, error) {
 	return float64(8), nil
 }

@@ -17,6 +17,7 @@ import (
 	"k8s.io/client-go/util/workqueue"
 )
 
+//Controller represents the data the controller needs to operate.
 type Controller struct {
 	// pods gives cached access to pods.
 	elasticities                 lister.ElasticityLister
@@ -90,6 +91,7 @@ func NewController(elasticityInformer cache.SharedIndexInformer,
 	return c
 }
 
+//Run starts the controller
 func (c *Controller) Run(threadiness int, stopCh chan struct{}) {
 	// don't let panics crash the process
 	defer utilruntime.HandleCrash()
@@ -216,7 +218,7 @@ func (c *Controller) processNextWorkItem() bool {
 		// if you had no error, tell the queue to stop tracking history for your
 		// key. This will reset things like failure counts for per-item rate
 		// limiting
-		c.queue.Forget(key)
+		c.queue.AddRateLimited(key)
 		return true
 	}
 
