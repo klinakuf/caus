@@ -12,7 +12,7 @@ import (
 // currentBuffer - this is the current buffer size
 // currentPerf - this is the  performance metric
 // bufferThreshold - the threshold to increase the buffer size
-func AdjustBufferAmount(publishingRate float64, currentReplicas float64, currentBuffer float64, currentPerf float64, bufferThreshold float64) (newBufferSize int32) {
+func AdjustBufferAmount(publishingRate float64, currentReplicas float64, currentBuffer float64, currentPerf float64, bufferThreshold float64, initialBuffer int32) (newBufferSize int32) {
 	usage := publishingRate / ((currentReplicas - currentBuffer) * currentPerf)
 
 	bufferThresh := bufferThreshold / 100.0
@@ -27,7 +27,7 @@ func AdjustBufferAmount(publishingRate float64, currentReplicas float64, current
 	} else {
 		// if usage is less then we need to scale down the buffer
 		// TODO: check this to add initialbuffer
-		return int32(math.Max(1, currentBuffer-1))
+		return int32(math.Max(float64(initialBuffer), currentBuffer-1))
 	}
 	return int32(currentBuffer)
 }
@@ -63,7 +63,8 @@ func CalcReplicas(elasticity *v1.Elasticity, publishingRate float64, currentRepl
 
 	// current capacity ---
 	baseWorkload := BaseWorkload(publishingRate, float64(elasticity.Spec.Deployment.Capacity))
-	bufferSize = AdjustBufferAmount(publishingRate, float64(currentReplicas), bufferForCalc, float64(elasticity.Spec.Deployment.Capacity), float64(elasticity.Spec.Buffer.Threshold))
+	// adjust anticipation ---
+	bufferSize = AdjustBufferAmount(publishingRate, float64(currentReplicas), bufferForCalc, float64(elasticity.Spec.Deployment.Capacity), float64(elasticity.Spec.Buffer.Threshold), elasticity.Spec.Buffer.Initial)
 	totalReplicas := baseWorkload + bufferSize
 
 	// maximum capacity ---

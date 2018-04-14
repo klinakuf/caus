@@ -7,15 +7,16 @@ import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 func TestAdjustBufferAmount(t *testing.T) {
 	currentPerf := 8.0
 	cases := []struct {
-		publishingRate, currentCapacity, currentBuffer float64
-		newBufferSize                                  int32
+		publishingRate, totalReplicas, currentBuffer float64
+		threshold                                    int32
+		newBufferSize                                int32
 	}{
-		{float64(20), float64(2), float64(1), 2}, // it increases to one
-		{float64(20), float64(4), float64(2), 2}, // it stays the same because buffer is touched less then 0.5
-		{float64(22), float64(5), float64(2), 1}, // it should decrease the buffer
+		{float64(20), float64(2), float64(1), 50, 2}, // it increases to one
+		{float64(20), float64(4), float64(2), 50, 2}, // it stays the same because buffer is touched less then 0.5
+		{float64(22), float64(5), float64(2), 50, 1}, // it should decrease the buffer
 	}
 	for _, c := range cases {
-		result := AdjustBufferAmount(c.publishingRate, c.currentCapacity, c.currentBuffer, currentPerf, 50.0)
+		result := AdjustBufferAmount(c.publishingRate, c.totalReplicas, c.currentBuffer, currentPerf, float64(c.threshold), 1)
 		if result != c.newBufferSize {
 			t.Errorf("adjustBufferAmount(%v) = %v, want %v", c.publishingRate, result, c.newBufferSize)
 		}
