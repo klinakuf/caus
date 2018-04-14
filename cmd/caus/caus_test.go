@@ -57,7 +57,7 @@ func TestCalcReplicas(t *testing.T) {
 		},
 		Spec: v1.ElasticitySpec{
 			Deployment: v1.DeploymentSpec{
-				Name:        "com-sap-ngp-xx-choreography-deployment",
+				Name:        "my-orchestrator",
 				Capacity:    8,
 				MinReplicas: &minReplicas,
 				MaxReplicas: 20,
