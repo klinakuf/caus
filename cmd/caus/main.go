@@ -48,11 +48,20 @@ func main() {
 	if err != nil {
 		glog.Fatalf("Error building kubernetes client: %v", err)
 	}
-	myMonitorInstance := MyMonitor{}
+
 	elSharedInformerFactory := externalversions.NewSharedInformerFactory(elasticityClient, 0)
 	elInformer := elSharedInformerFactory.Caus().V1().Elasticities().Informer()
 	elLister := elSharedInformerFactory.Caus().V1().Elasticities().Lister()
-	controller := NewController(elInformer, elLister, kubernetesClient, &myMonitorInstance, elasticityClient)
+
+	//TODO:: Feed the right data here from environment
+	prometheusMonitor, err := NewPrometheusMonitor("", "myworkqueue", "total_published")
+
+	if err != nil {
+		prometheusMonitor := &MyMonitor{}
+		print(prometheusMonitor.name)
+	}
+
+	controller := NewController(elInformer, elLister, kubernetesClient, prometheusMonitor, elasticityClient)
 
 	stop := make(chan struct{})
 	defer close(stop)
